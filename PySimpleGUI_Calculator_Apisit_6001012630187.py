@@ -13,6 +13,7 @@ import PySimpleGUI as sg
 
 # Creat GUI       # Call Class from Class_Button.py
 layout = [[sg.Txt(''  * 10)],                      
+          [sg.Text('', size=(15, 1), font=('Helvetica', 18), text_color='black', key='formula')],
           [sg.Text('', size=(15, 1), font=('Helvetica', 18), text_color='red', key='input')],
           [sg.Txt(''  * 10)],
           [Button('(',('black','orange')).Create(), Button(')',('black','orange')).Create(), Button('c',('black','orange')).Create(), Button('«',('black','orange')).Create()],
@@ -55,6 +56,7 @@ while True:
     
    # Process Conditional
     elif button is '=':
+        form.FindElement('formula').Update(Equal)
         # Error Case
         for i in List_Op_Error :  
             if '*' is Equal[0] or '/' is Equal[0] or ')' is Equal[0]  or i is Equal[-1]:   # Check Error Case
@@ -74,8 +76,8 @@ while True:
                 if ')' in Equal:
                     Answer = "Error Operation" 
                     break
-    # Calculate Case    
-        else :
+    # Calculate Case
+        else:
             Answer = str("%0.2f" %(eval(Equal)))                         # eval(Equal)  
             if '.0' in Answer:
                 Answer = str(int(float(Answer)))                         # convert float to int
